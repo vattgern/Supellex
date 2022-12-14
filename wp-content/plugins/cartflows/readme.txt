@@ -3,7 +3,7 @@ Contributors: sujaypawar, wpcrafter
 Tags: woocommerce, funnel builder, sales funnels, elementor, beaver builder
 Requires at least: 5.4
 Tested up to: 6.1
-Stable tag: 1.11.6
+Stable tag: 1.11.7
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -321,6 +321,9 @@ This includes, but is not limited to:
 5. Easily edit anything with your page builder.
 
 == Changelog ==
+
+= Version 1.11.7 - Thursday, 1st December 2022 =
+* Fix: Weekly report emails were not sending in some cases.
 
 = Version 1.11.6 - Tuesday, 22nd November 2022 =
 * New: Added option to display inline field validation message for the field validation.

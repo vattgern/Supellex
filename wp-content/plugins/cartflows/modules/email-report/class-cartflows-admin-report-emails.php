@@ -56,14 +56,20 @@ class Cartflows_Admin_Report_Emails {
 
 		$is_report_emails = get_option( 'cartflows_stats_report_emails', 'enable' );
 
+		wcf()->logger->log( 'Is weekly report enabled: ' . $is_report_emails );
+
 		if ( 'enable' === $is_report_emails && function_exists( 'as_next_scheduled_action' ) && false === as_next_scheduled_action( 'cartflows_send_report_summary_email' ) ) {
 
 			$date = new DateTime( 'next monday 2pm' );
 
 			// It will automatically reschedule the action once initiated.
 			as_schedule_recurring_action( $date, WEEK_IN_SECONDS, 'cartflows_send_report_summary_email' );
+
+			wcf()->logger->log( 'Weekly report action scheduled. Action: cartflows_send_report_summary_email ' );
 		} elseif ( 'enable' !== $is_report_emails && as_next_scheduled_action( 'cartflows_send_report_summary_email' ) ) {
 			as_unschedule_all_actions( 'cartflows_send_report_summary_email' );
+
+			wcf()->logger->log( 'Weekly report action unscheduled. Action: cartflows_send_report_summary_email ' );
 		}
 	}
 
@@ -76,9 +82,14 @@ class Cartflows_Admin_Report_Emails {
 
 		$emails = get_option( 'cartflows_stats_report_email_ids', get_option( 'admin_email' ) );
 
+		wcf()->logger->log( 'Start-' . __CLASS__ . '::' . __FUNCTION__ );
+
 		if ( 'enable' === $is_report_emails && ! empty( $emails ) && apply_filters( 'cartflows_send_weekly_report_email', true ) ) {
 
 			$stats = $this->get_last_week_stats();
+
+			wcf()->logger->log( 'Send weekly emails to ' . $emails );
+			wcf()->logger->log( 'Total Revenue: ' . $stats['total_revenue'] );
 
 			if ( isset( $stats['total_revenue'] ) && $stats['total_revenue'] > 0 ) {
 
@@ -92,7 +103,8 @@ class Cartflows_Admin_Report_Emails {
 					$user_info  = get_user_by( 'email', $email_id );
 					$name       = $user_info ? $user_info->display_name : __( 'There', 'cartflows' );
 					$email_body = $this->get_email_content( $stats, $name, $email_id );
-					wp_mail( $email_id, $subject, stripslashes( $email_body ), $headers );
+					$status     = wp_mail( $email_id, $subject, stripslashes( $email_body ), $headers );
+					wcf()->logger->log( 'Email send status for email ' . $email_id . ' is ' . $status );
 				}
 			}
 		}
@@ -124,6 +136,7 @@ class Cartflows_Admin_Report_Emails {
 				$email_list = implode( "\n", $email_list );
 
 				update_option( 'cartflows_stats_report_email_ids', $email_list );
+				wcf()->logger->log( 'Email unsubscribed: ' . $email );
 			}
 
 			wp_die( esc_html__( 'You have successfully unsubscribed from our weekly emails list.', 'cartflows' ), esc_html__( 'Unsubscribed', 'cartflows' ) );
@@ -142,9 +155,9 @@ class Cartflows_Admin_Report_Emails {
 		return AdminHelper::get_earnings( $start_date, $end_date );
 	}
 
-		/**
-		 *  Get the stats mention in to email.
-		 */
+	/**
+	 *  Get the stats mention in to email.
+	 */
 	public function get_last_month_stats() {
 
 		$start_date = gmdate( 'Y-m-d', strtotime( '-30 days' ) );

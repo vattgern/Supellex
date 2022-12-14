@@ -134,7 +134,10 @@ class Helper {
 		if ( empty( $str ) ) {
 			return false;
 		}
-		return strtolower( trim( preg_replace( '/[^A-Za-z0-9-]+/', '-', $str ) ) );
+		$remove_special_characters     = strtolower( trim( preg_replace( '/[^\w\s]+/u', '', $str ) ) );
+		$replace_white_spaces_to_dash  = str_replace( ' ', '-', $remove_special_characters );
+		$replace_multiple_dash_to_dash = preg_replace( '/-+/', '-', $replace_white_spaces_to_dash );
+		return $replace_multiple_dash_to_dash;
 	}
 
 	/**

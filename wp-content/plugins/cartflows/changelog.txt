@@ -1,3 +1,6 @@
+Version 1.11.7 - Thursday, 1st December 2022
+- Fix: Weekly report emails were not sending in some cases.
+
 Version 1.11.6 - Tuesday, 22nd November 2022
 - New: Added option to display inline field validation message for the field validation.
 - Improvement: Added new CSS customizations options for CartFlows Gutenberg Blocks.

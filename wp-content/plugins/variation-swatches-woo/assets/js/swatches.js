@@ -138,8 +138,8 @@
 			const copySelected = { ...getSelectedOptions };
 			const selectedKeys = Object.keys( getSelectedOptions );
 			const getCurrentIndex = selectedKeys.indexOf( getAttrName );
-			const curretObj = {};
-			curretObj[ getAttrName ] = currentTermSlug;
+			const currentObj = {};
+			currentObj[ getAttrName ] = currentTermSlug;
 			if ( getCurrentIndex >= 0 ) {
 				selectedKeys.splice( getCurrentIndex, 1 );
 				delete copySelected[ getAttrName ];
@@ -147,14 +147,14 @@
 			hasThisSwatch = SW.checkInRawData(
 				attributes,
 				copySelected,
-				curretObj,
+				currentObj,
 				is_in_stock
 			);
 			return hasThisSwatch;
 		},
-		checkInRawData: ( attribute, selected, curretObj, is_in_stock ) => {
+		checkInRawData: ( attribute, selected, currentObj, is_in_stock ) => {
 			const cloneAttr = { ...attribute };
-			const selectedCurrent = { ...selected, ...curretObj };
+			const selectedCurrent = { ...selected, ...currentObj };
 			let checkAndAvail = true;
 			for ( const checkIsAvail in selectedCurrent ) {
 				const value = selectedCurrent[ checkIsAvail ];
@@ -489,31 +489,27 @@
 	} );
 
 	function updateThumbnail( swatch, imageData ) {
-		const thumbnail = swatch.parents( 'li' ).find( 'img:first' );
-		if (
-			0 ===
-			swatch.parents( 'li' ).find( '.cfvsw-original-thumbnail' ).length
-		) {
+		const listItem = swatch.closest( 'li' );
+		const thumbnail = listItem.find( 'img:first' );
+		if ( 0 === listItem.find( '.cfvsw-original-thumbnail' ).length ) {
 			const originalThumbnail = thumbnail.clone();
 			thumbnail.after( '<span class="cfvsw-original-thumbnail"></span>' );
-			$( '.cfvsw-original-thumbnail' ).html( originalThumbnail );
+			listItem
+				.find( '.cfvsw-original-thumbnail' )
+				.html( originalThumbnail );
 		}
 		thumbnail.attr( 'src', imageData.thumb_src );
 		thumbnail.attr( 'srcset', '' );
 	}
 
 	function resetThumbnail( swatch ) {
-		if (
-			swatch.parents( 'li' ).find( '.cfvsw-original-thumbnail' ).length
-		) {
-			const thumbnail = swatch.parents( 'li' ).find( 'img:first' );
+		const listItem = swatch.closest( 'li' );
+		if ( listItem.find( '.cfvsw-original-thumbnail' ).length ) {
+			const thumbnail = listItem.find( 'img:first' );
 			thumbnail.replaceWith(
-				swatch
-					.parents( 'li' )
-					.find( '.cfvsw-original-thumbnail' )
-					.html()
+				listItem.find( '.cfvsw-original-thumbnail' ).html()
 			);
-			$( '.cfvsw-original-thumbnail' ).remove();
+			listItem.find( '.cfvsw-original-thumbnail' ).remove();
 		}
 	}
 
@@ -574,6 +570,14 @@
 
 	SW.init();
 	document.addEventListener( 'astraInfinitePaginationLoaded', function () {
+		SW.firstTime();
+		addVariationFunctionality();
+	} );
+
+	// Add custom trigger to load swatches.
+
+	// document.dispatchEvent( new CustomEvent("cfvswVariationLoad", { detail: {} }) ); To load variation trigger we need to trigger this.
+	document.addEventListener( 'cfvswVariationLoad', function () {
 		SW.firstTime();
 		addVariationFunctionality();
 	} );

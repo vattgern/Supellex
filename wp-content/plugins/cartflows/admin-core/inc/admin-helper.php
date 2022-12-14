@@ -843,7 +843,7 @@ class AdminHelper {
 		$start_date = date( 'Y-m-d H:i:s', strtotime( $start_date . '00:00:00' ) ); //phpcs:ignore
 		$end_date   = date( 'Y-m-d H:i:s', strtotime( $end_date . '23:59:59' ) ); //phpcs:ignore
 
-		if ( _is_cartflows_pro() && defined( 'CARTFLOWS_PRO_PLUGIN_TYPE' ) && 'pro' === CARTFLOWS_PRO_PLUGIN_TYPE ) {
+		if ( _is_cartflows_pro() && is_wcf_pro_plan() ) {
 			// Return All Stats.
 			return apply_filters(
 				'cartflows_home_page_analytics',

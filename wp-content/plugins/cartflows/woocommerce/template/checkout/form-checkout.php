@@ -50,13 +50,13 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 	<?php endif; ?>
 
 	<div class='wcf-order-wrap'>
-	
+
 		<?php do_action( 'cartflows_woocommerce_checkout_before_order_heading' ); ?>
 
 		<?php do_action( 'woocommerce_checkout_before_order_review_heading' ); ?>
-		
+
 		<h3 id="order_review_heading"><?php echo wp_kses_post( apply_filters( 'cartflows_woo_your_order_text', esc_html__( 'Your order', 'woocommerce' ) ) ); ?></h3>
-		
+
 		<?php do_action( 'woocommerce_checkout_before_order_review' ); ?>
 
 		<div id="order_review" class="woocommerce-checkout-review-order">
@@ -64,7 +64,7 @@ if ( ! $checkout->is_registration_enabled() && $checkout->is_registration_requir
 		</div>
 
 		<?php do_action( 'woocommerce_checkout_after_order_review' ); ?>
-		
+
 	</div>
 </form>
 

@@ -1562,8 +1562,6 @@ if ( ! class_exists( 'Astra_Sites' ) ) :
 			}
 
 			wp_enqueue_script( 'astra-sites-install-theme', ASTRA_SITES_URI . 'inc/assets/js/install-theme.js', array( 'jquery', 'updates' ), ASTRA_SITES_VER, true );
-			wp_enqueue_style( 'astra-sites-install-theme', ASTRA_SITES_URI . 'inc/assets/css/install-theme.css', null, ASTRA_SITES_VER, 'all' );
-			wp_style_add_data( 'astra-sites-install-theme', 'rtl', 'replace' );
 
 			$data = apply_filters(
 				'astra_sites_install_theme_localize_vars',

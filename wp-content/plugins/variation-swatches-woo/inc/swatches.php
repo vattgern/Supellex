@@ -774,7 +774,7 @@ class Swatches {
 	public function requires_shop_settings() {
 		return apply_filters(
 			'cfvsw_requires_shop_settings',
-			is_shop() || is_product_category()
+			is_shop() || is_product_category() || is_product_taxonomy()
 		);
 	}
 

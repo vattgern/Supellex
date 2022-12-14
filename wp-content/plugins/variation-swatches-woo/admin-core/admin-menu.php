@@ -88,7 +88,7 @@ class Admin_Menu {
 	 */
 	public function settings_page_scripts( $hook ) {
 		wp_enqueue_style( 'cfvsw_extra_css', CFVSW_URL . 'admin-core/assets/css/extra.css', [], CFVSW_VER );
-		if ( 'woocommerce_page_cfvsw_settings' !== $hook ) {
+		if ( false === strpos( $hook, '_page_cfvsw_settings' ) ) {
 			return;
 		}
 		$script_asset_path = CFVSW_DIR . 'admin-core/assets/build/settings.asset.php';

@@ -2,8 +2,8 @@
 Contributors: brainstormforce
 Tags: woocommerce variation swatches, woocommerce attributes, woocommerce variation, product attributes, product color, product size, variable product attributes, variation product swatches, color variation swatch, image variation swatch
 Requires at least: 5.4
-Tested up to: 6.0.2
-Stable tag: 1.0.5
+Tested up to: 6.1.1
+Stable tag: 1.0.6
 Requires PHP: 5.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -106,6 +106,13 @@ Yes, this plugin enables variation swatches on shop / archieve page. User can se
 2. Multiple options for swatches available
 
 == Changelog ==
+= 1.0.6 – WEDNESDAY, 14th DECEMBER 2022 =
+* Improvement - Added support for the taxonomy page.
+* Improvement - Added support to populate swatches on ajax calls.
+* Fixed - Wrong images were appearing on the swatches selection.
+* Fixed - Plugin conflict with WP-Persian plugin.
+* Fixed - Unable to save custom attribute data with the Cyrillic alphabet.
+
 = 1.0.5 – TUESDAY, 18th OCTOBER 2022 =
 * Fixed - Compatibility issues with WP Sheet Editor – Taxonomy Terms Pro.
 * Fixed - Fatal error with Astra theme.

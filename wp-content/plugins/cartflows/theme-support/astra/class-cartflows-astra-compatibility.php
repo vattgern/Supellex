@@ -51,6 +51,7 @@ if ( ! class_exists( 'Cartflows_Astra_Compatibility' ) ) :
 			add_filter( 'astra_woo_shop_product_structure_override', array( $this, 'override_product_structure_on_checkout' ) );
 
 			add_action( 'cartflows_after_save_store_checkout', array( $this, 'clear_astra_woo_css_cache' ) );
+
 		}
 
 		/**
@@ -99,6 +100,10 @@ if ( ! class_exists( 'Cartflows_Astra_Compatibility' ) ) :
 			remove_action( 'woocommerce_checkout_after_order_review', 'astra_woocommerce_li_close', 40 );
 
 			add_filter( 'astra_theme_woocommerce_dynamic_css', '__return_empty_string' );
+
+			if ( class_exists( 'ASTRA_Ext_WooCommerce_Markup' ) ) {
+				remove_action( 'woocommerce_review_order_after_submit', array( ASTRA_Ext_WooCommerce_Markup::get_instance(), 'back_to_cart_button_on_checkout' ) );
+			}
 		}
 
 		/**

@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the CartFlows plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: CartFlows 1.11.6\n"
+"Project-Id-Version: CartFlows 1.11.7\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/cartflows\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2022-11-21T07:44:06+00:00\n"
+"POT-Creation-Date: 2022-12-01T09:22:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: cartflows\n"
@@ -3104,19 +3104,19 @@ msgstr ""
 msgid "Show"
 msgstr ""
 
-#: modules/email-report/class-cartflows-admin-report-emails.php:93
+#: modules/email-report/class-cartflows-admin-report-emails.php:104
 msgid "There"
 msgstr ""
 
-#: modules/email-report/class-cartflows-admin-report-emails.php:129
+#: modules/email-report/class-cartflows-admin-report-emails.php:142
 msgid "You have successfully unsubscribed from our weekly emails list."
 msgstr ""
 
-#: modules/email-report/class-cartflows-admin-report-emails.php:129
+#: modules/email-report/class-cartflows-admin-report-emails.php:142
 msgid "Unsubscribed"
 msgstr ""
 
-#: modules/email-report/class-cartflows-admin-report-emails.php:161
+#: modules/email-report/class-cartflows-admin-report-emails.php:174
 msgid "Here’s how your store performed last week!"
 msgstr ""
 
